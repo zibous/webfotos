@@ -1,0 +1,67 @@
+// -----------------------------------
+// Album Photo and video thumbnails
+// -----------------------------------
+.show-gallery {
+    position: relative;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    font-size: 2em;
+    font-weight: 300;
+    color: #FFFFFF;
+    opacity: 0;
+    text-align: left;
+}
+
+.albumList a:hover .show-gallery {
+    opacity: 1;
+    transition: all 1.2s ease-in-out;
+    text-align: left;
+    transform: scale(0.7, 0.7);
+    cursor: pointer;
+}
+
+/* Lupe bei Videos ausblenden - Video-Overlay zeigt Play-Button */
+.albumList:has(.video-overlay) .show-gallery {
+    display: none;
+}
+
+.video-overlay img {
+    left: 50%;
+    height: 48px;
+    margin-left: -24px;
+    margin-top: -24px;
+    position: absolute;
+    top: 50%;
+    width: 48px;
+}
+
+.albumList:hover {
+    transform: scale(0.98, 0.98);
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, .1);
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+}
+
+.video-js .vjs-big-play-button,
+.video-js:hover .vjs-big-play-button {
+    border-radius: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.video-js .vjs-big-play-button:hover,
+.video-js .vjs-big-play-button:focus {
+    color: @hovercolor;
+    border: none;
+    background-color: transparent;
+    transition: all 0s
+}
+
+.video-js .vjs-big-play-button .vjs-icon-placeholder:before,
+.video-js .vjs-play-control .vjs-icon-placeholder:before,
+.vjs-icon-play:before {
+    font-size: 2em;
+}

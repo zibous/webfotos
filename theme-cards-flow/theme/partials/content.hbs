@@ -1,0 +1,28 @@
+{{!-- 
+  Page content for a gallery page
+  render the pageheader, the navigation, all album- or media elements and the page footer
+--}}
+{{#if (cover album)}}
+  {{> galleryHeader-home}}
+{{else}}
+  {{> galleryHeader}}
+  <aside id="gallery-overview" class="megamenu">
+      {{#if @root.settings.menutitle}}
+      <h2 class="megamenu-title">
+        <button class="menu-close icon-chevron-left" title="{{settings.linkbackTitle}}"></button>
+        <a class="link-home" href="index.html" title="{{gallery.title}}">{{@root.settings.tabHome}}</a>&nbsp;&bull;&nbsp;<span class="link-alben">{{@root.settings.menutitle}}</span></h2>
+      {{else}}      
+      <h2 class="megamenu-title">
+          <button class="menu-close icon-chevron-left" title="{{settings.linkbackTitle}}"></button>
+          <a class="link-home" href="index.html" title="{{gallery.title}}">{{gallery.title}}</a>&nbsp;&bull;&nbsp;<span class="link-alben">{{album.title}}</span>
+      </h2>
+      {{/if}}
+      <div id="megaitems"></div>
+      <div class="space3em">&nbsp;</div>
+  </aside>
+{{/if}}
+<div id="container" {{#if (cover album)}}class="default"{{/if}}>
+    {{> ablumTeaser}}    
+    {{> mediaItems}}  
+    {{> footer}}  
+</div>

@@ -1,0 +1,19 @@
+# Fotobücher nicht
+fotobooks/*
+
+# Fotobücher Ausnahmen
+!fotobooks/_defaults/
+!fotobooks/_template/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# IDE
+.kiro/
+.vscode/
+
+# Temporär
+tmp/

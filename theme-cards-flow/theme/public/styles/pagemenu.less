@@ -1,0 +1,118 @@
+.menubar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 56px;
+    width: 100%;
+    transition: height 0.3s linear 0s;
+    z-index: 100;
+    padding: 8px 80px 8px 80px;
+    text-align: center;
+    background-color: var(--menubar-bg);
+    cursor: default;
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 0 7px 0 var(--shadow-color);
+    color: var(--font-color);
+}
+
+a.menubutton,
+a.menubutton:hover {
+    position: absolute;
+    right: 12px;
+    top: 4px;
+    font-size: 2em;
+    font-weight: 400;
+    color: @fontcolor;
+    z-index: 5000;
+}
+
+a.menubutton:hover {
+    color: @hovercolor;
+}
+
+.logo {
+    position: absolute;
+    left: 12px;
+    top: 16px;
+    text-align: left;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.logo a {
+    color: @fontcolor;
+}
+
+.logo a:hover {
+    color: @hovercolor;
+}
+
+.logo img {
+    position: relative;
+    bottom: 4px;
+    left: 0;
+    object-fit: cover;
+    width: 32px;
+    height: 32px;
+    z-index: 500;
+    border-radius: 4px;
+}
+
+.logo span {
+    display: inline-block;
+    position: relative;
+    line-height: 1.15em;
+    left: 6px;
+    width: 112px;
+    height:54px;
+    z-index: 500;
+    font-weight: 400;
+    text-align: left;
+}
+
+.page-title {
+    position: relative;
+    bottom: 8px;
+    line-height: 2.0em;
+    font-size: 1.8em;
+    text-align: center;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: @hovercolor;
+}
+
+.page-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-color: @body-background;
+    text-align: center;
+    -webkit-box-shadow: 0 0 7px 0 rgba(0, 0, 0, .35);
+    -moz-box-shadow: 0 0 7px 0 rgba(0, 0, 0, .35);
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, .35);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.page-header::before {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.page-top:hover .page-header::before {
+    background: rgba(0, 0, 0, 0.25);
+}

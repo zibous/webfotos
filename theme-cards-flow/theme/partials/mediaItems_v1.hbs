@@ -1,0 +1,28 @@
+{{!-- All photos and videos  --}}
+{{#compare album.files.length '>' 1}}
+   {{#if album.files}}           
+      <div class="page-teaser-outer-media">
+         {{> coverItem}}
+      </div> 
+      {{!-- all fotos for this album as justified gallery fotos --}}
+      <div id="media" class="clearfix justified-gallery">
+            {{#each album.files~}}
+               {{#compare meta.exif.ImageDescription.length '&&' @first}}
+                  {{!-- skip this because this is the cover item  --}}
+               {{else}}
+               <div id="media-id{{this.id}}" data-exthumbimage="{{relative urls.thumbnail}}" data-filename="{{filename}}" {{{photoMeta meta @root.settings}}} {{~#if isVideo~}} data-html="#media{{id}}" data-src="{{relative urls.download}}" data-poster="{{relative urls.small}}" {{~else~}} data-src="{{relative urls.large}}" {{~/if~}}>
+                     {{!--  Image or Video thumbnail --}}
+                     {{~#if isVideo~}}<a href="{{relative urls.download}}">{{~else~}}<a href="{{relative urls.large}}">{{~/if~}}
+                           <img class="fotopreview" src="{{relative urls.small}}" alt="{{#if meta.exif}}{{{meta.exif.DateTimeOriginal}}}{{else}}{{{date meta.date "MMMM YYYY HH:mm"}}}{{/if}}" />
+                           <span class="show-gallery icon-zoom-in"></span></a>
+                     {{#compare meta.animated "||" isVideo}}
+                        <div class="video-overlay">
+                           <img src="{{relative 'public/assets/play.png'}}" />
+                        </div>
+                     {{/compare}}    
+                  </div>
+                  {{/compare}}
+            {{~/each}}
+      </div>
+   {{/if}}
+{{/compare}}

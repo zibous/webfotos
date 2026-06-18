@@ -1,0 +1,19 @@
+{
+    "input": "/photos",
+    "output": "/output",
+    "title": "Fotoalbum",
+    "include-raw-photos": false,
+    "photo-quality": 90,
+    "thumb-size": 360,
+    "large-size": 1500,
+    "embed-exif": true,
+    "sort-albums-by": "title",
+    "sort-albums-direction": "desc",
+    "theme-path": "/app/theme-cards-flow/theme",
+    "theme-settings": "/config/settings.json",
+    "cleanup": true,
+    "concurrency": 4,
+    "footer": "<span>All images courtesy of </span><a href=\"https://siebler.at\">siebler.at</a>",
+    "usage-stats": false,
+    "log": "info"
+}

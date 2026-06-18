@@ -1,0 +1,23 @@
+
+# Quellfotos kopieren
+rsync -avz --progress /Users/petsie1612/ips_apps/webfotos/photos/ nuc2026.siebler.home:/docker/webfotos/fotobooks/fotobuch/
+
+# Bestehenden Output + DB kopieren (falls vorhanden)
+rsync -avz --progress /Users/petsie1612/ips_apps/webfotos/fotobuch/ nuc2026.siebler.home:/docker/webfotos/fotobooks/www/fotobuch/
+
+
+so # Quellfotos kopieren
+
+rsync -avz --progress \
+
+  /Users/petsie1612/ips_apps/webfotos/photos/ \
+
+  nuc2026.siebler.home:/docker/webfotos/fotobooks/fotobuch/
+
+# Bestehenden Output + DB kopieren (falls vorhanden)
+
+rsync -avz --progress \
+
+  /Users/petsie1612/ips_apps/webfotos/fotobuch/ \
+
+  nuc2026.siebler.home:/docker/webfotos/fotobooks/www/fotobuch/

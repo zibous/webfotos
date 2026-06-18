@@ -1,0 +1,238 @@
+// -----------------------------------
+// Header
+// -----------------------------------
+
+#pagetop-home {
+    position: relative;
+    width: 100%;
+    background-image: url('assets/header.jpg');
+    height: 200px;
+    width: 100%;
+    background-size: 100%;
+    background-attachment: scroll;
+    background-position: 50% 50%;
+    color: @header-titlecolor;
+    z-index: 1000;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    transition: height 0.3s linear 0s, padding 0.3s linear 0s;
+    transition: box-shadow 250ms;
+}
+
+.header-notFixed {
+    position: relative;
+    color: @header-titlecolor;
+    display: none;
+    z-index: 1000;
+    width: 100%;
+    height: 54px;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    transition: height 0.3s linear 0s, padding 0.3s linear 0s;
+    transition: box-shadow 250ms;
+}
+
+#pagetop-home h1 {
+    position: absolute;
+    left: 54px;
+    bottom: 15px;
+    font-size: 1.5em;
+    line-height: 1.2em;
+    text-align: left;
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: @header-titlecolor;
+    text-shadow: @header-text-shadow;
+}
+
+#pagetop-home h1 a {
+    color: @header-titlecolor;
+}
+
+#pagetop-home .appname {
+    display: inline-block;
+    position: relative;
+    left: 12px;
+    bottom: 42px;
+    width: 172px;
+}
+
+#pagetop-home .avatar {
+    position: relative;
+    bottom: 40px;
+    left: 0;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+}
+
+#pagetop-home .pageinfo {
+    display: inline-block;
+    position: absolute;
+    right: 26px;
+    bottom: 56px;
+    color: @header-titlecolor;
+    font-size: 1.0em;
+    font-weight: 500;
+    width: 120px;
+    text-shadow: @header-text-shadow;
+}
+
+#pagetop-home .map-link {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    color: @header-titlecolor;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+    text-shadow: @header-text-shadow;
+    z-index: 1001;
+}
+
+#pagetop-home .map-link:hover {
+    opacity: 1;
+}
+
+.header-actions {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    z-index: 1001;
+}
+
+.header-actions .theme-toggle-btn {
+    position: static;
+    bottom: auto;
+    right: auto;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: @header-titlecolor;
+    transition: opacity 0.2s, transform 0.2s;
+    padding: 0;
+}
+
+.header-actions .theme-toggle-btn:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.header-actions .map-link {
+    position: static;
+    color: @header-titlecolor;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+    text-shadow: @header-text-shadow;
+}
+
+.header-actions .map-link:hover {
+    opacity: 1;
+}
+
+.theme-toggle-nav {
+    position: absolute;
+    right: 48px;
+    top: 14px;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--font-color);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0;
+}
+
+.theme-toggle-nav:hover {
+    opacity: 1;
+    color: @hovercolor;
+}
+
+.stickybar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: var(--menubar-bg);
+    cursor: default;
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 0 7px 0 var(--shadow-color);
+    width: 100%;
+    padding: 0;
+    font-size: 1.6em;
+    z-index: 2000;
+    height: 56px;
+    line-height: 2em;
+    transition: height 0.3s linear 0s, padding 0.3s linear 0s;
+    transition: box-shadow 250ms;
+    color: var(--font-color);
+}
+
+.stickybar img {
+    position: relative;
+    top: 10px;
+    left: 18px;
+    object-fit: cover;
+    width: 32px;
+    height: 32px;
+    z-index: 500;
+    border-radius: 4px;
+}
+
+.stickybar h1 {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width:100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+}
+
+.stickybar .map-link {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    color: @fontcolor;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    z-index: 2001;
+}
+
+.stickybar .map-link:hover {
+    opacity: 1;
+    color: @bluecolor;
+}
+
+.map-link-cover {
+    display: inline-block;
+    color: #fff;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 0.9em;
+    text-decoration: none;
+}
+
+.map-link-cover:hover {
+    opacity: 1;
+    text-decoration: underline;
+}

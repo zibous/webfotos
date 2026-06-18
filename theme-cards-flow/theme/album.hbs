@@ -1,0 +1,245 @@
+{{!--
+  Page template to render the Fotobook application.
+  Uses the partials content and the thumbsup video loader.
+  @Autor  : Peter Siebler
+  @Version: 2.1.0 (modernized: Lazy Loading für CSS & JS integriert)
+--}}
+<!DOCTYPE html>
+<html lang="de" prefix="og: http://ogp.me/ns#">
+  <head>
+      <meta charset="utf-8" />
+      <title>{{gallery.title}} - {{album.title}}</title>
+
+      <meta name="viewport" content="width=device-width, user-scalable=no" />
+      <meta name="application-name" content="{{settings.application}} {{settings.appVersion}}">
+      <meta name="author" content="{{settings.author}}">
+      <meta name="robots" content="noindex,nofollow">
+      <meta name="format-detection" content="telephone=no">
+      <meta name="generator" content="thumbsup">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="theme-color" content="#ffffff">
+
+      <link rel="apple-touch-icon" sizes="180x180" href="{{relative 'public/assets/icons/apple-touch-icon.png'}}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{relative 'public/assets/icons/favicon-32x32.png'}}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{{relative 'public/assets/icons/favicon-16x16.png'}}">
+      <link rel="manifest" href="{{relative 'public/assets/icons/site.webmanifest'}}">
+
+      <script>
+        (function() {
+          var savedTheme = localStorage.getItem('theme');
+          if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+          }
+        })();
+      </script>
+      <style>html { background: #030303; }</style>
+
+      <link rel="stylesheet" href="{{relative 'public/core.css'}}" />
+      <link rel="stylesheet" href="{{relative 'public/theme.css'}}" />
+      <link rel="stylesheet" href="{{relative 'public/styles/gallery-grid.css'}}" />
+      <link rel="stylesheet" href="{{relative 'public/lightgallery/css/lightgallery-bundle.min.css'}}" />
+      <link rel="stylesheet" href="{{relative 'public/lightgallery/css/lg-metadata.css'}}" />
+      <link rel="stylesheet" href="{{relative 'public/leaflet/leaflet.min.css'}}" />
+
+  </head>
+  <body>
+
+    {{> content}}
+    {{> video-loader}}
+    <div class="shimlayer">&nbsp;</div>
+    <script src="{{relative 'public/leaflet/leaflet.min.js'}}"></script>
+    <script src="{{relative 'public/lightgallery/js/lightgallery.min.js'}}"></script>
+    <script src="{{relative 'public/lightgallery/js/lg-fullscreen.min.js'}}"></script>
+    <script src="{{relative 'public/lightgallery/js/lg-zoom.min.js'}}"></script>
+    <script src="{{relative 'public/lightgallery/js/lg-thumbnail.min.js'}}"></script>
+    <script src="{{relative 'public/lightgallery/js/lg-video.min.js'}}"></script>
+    <script src="{{relative 'public/lightgallery/js/lg-metadata.js'}}"></script>
+    <script>
+    (function() {
+      'use strict';
+
+      // === lightGallery 2.x Initialization ===
+      var mediaEl = document.getElementById('media');
+      if (mediaEl) {
+        // Dynamisches Plugin-Array aufbauen, je nachdem, was geladen wurde
+        var activePlugins = [lgZoom, lgFullscreen, lgThumbnail];
+
+        // Plugins nur hinzufügen, wenn die Skripte geladen wurden
+        if (typeof lgVideo !== 'undefined') activePlugins.push(lgVideo);
+        if (typeof lgMetadata !== 'undefined') activePlugins.push(lgMetadata);
+
+        lightGallery(mediaEl, {
+          selector: '.albumList',
+          plugins: activePlugins, // Dynamische Übergabe
+          licenseKey: '0000-0000-000-0000',
+          speed: 400,
+          controls: true,
+          loop: true,
+          download: false,
+          counter: true,
+          getCaptionFromTitleOrAlt: true,
+          subHtmlSelectorRelative: true,
+          videojs: false, // Nativer, schneller HTML5 Player
+          videoMaxSize: '1920-1080',
+          exThumbImage: 'data-exthumbimage',
+          toggleThumb: true,
+          metatitle: 'Foto Information',
+          mapheadline: 'Aufnahmeort',
+          metakeys: {
+            'filename': 'Dateiname',
+            'subHtml': 'Beschreibung',
+            'datetimeoriginal': 'Aufnahme Datum',
+            'make': 'Kamera',
+            'model': 'Kamera',
+            'city': 'Stadt',
+            'gpslongitude': 'Längengrad',
+            'gpslongituderef': 'Längengrad',
+            'gpslatitude': 'Breitengrad',
+            'gpslatituderef': 'Breitengrad',
+            'shutterspeedvalue': 'Verschlusszeit',
+            'isospeedratings': 'ISO',
+            'iso': 'ISO',
+            'focallength': 'Brennweite',
+            'exposuretime': 'Belichtungszeit',
+            'fnumber': 'Blende'
+          }
+        });
+      }
+
+      // === Sidebar / Megamenu (Vanilla JS) ===
+      var megaContent = false;
+      var shimlayer = document.querySelector('.shimlayer');
+      var megamenu = document.querySelector('.megamenu');
+
+      function handleMegaItems() {
+        if (!megamenu) return;
+        shimlayer.classList.toggle('active');
+        megamenu.classList.toggle('active');
+
+        if (!megaContent) {
+          fetch('index.html')
+            .then(function(r) { return r.text(); })
+            .then(function(html) {
+              var parser = new DOMParser();
+              var doc = parser.parseFromString(html, 'text/html');
+              var albums = doc.querySelector('#albums');
+              var target = document.getElementById('megaitems');
+              if (albums && target) {
+                target.innerHTML = albums.outerHTML;
+              }
+              megaContent = true;
+            })
+            .catch(function() { megaContent = true; });
+        }
+      }
+
+      document.querySelectorAll('.menubutton').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          handleMegaItems();
+        });
+      });
+
+      document.querySelectorAll('.menu-close').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          handleMegaItems();
+        });
+      });
+
+      if (shimlayer) {
+        shimlayer.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (megaContent || megamenu.classList.contains('active')) {
+            handleMegaItems();
+          }
+        });
+      }
+
+      document.addEventListener('keyup', function(e) {
+        if (e.key === 'Escape') {
+          if (megamenu && megamenu.classList.contains('active')) {
+            handleMegaItems();
+          }
+          var popup = document.querySelector('.cd-popup.is-visible');
+          if (popup) popup.classList.remove('is-visible');
+        }
+      });
+
+      // === Popup (Modal) ===
+      document.querySelectorAll('.cd-open').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var popup = document.querySelector('.cd-popup');
+          if (popup) popup.classList.add('is-visible');
+        });
+      });
+      document.querySelectorAll('.cd-popup-close').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var popup = btn.closest('.cd-popup');
+          if (popup) popup.classList.remove('is-visible');
+        });
+      });
+
+      // === Scroll behavior ===
+      var lastScrollTop = 0;
+      window.addEventListener('scroll', function() {
+        var st = window.pageYOffset || document.documentElement.scrollTop;
+        var headerFixed = document.querySelector('.header-fixed');
+        var headerNotFixed = document.querySelector('.header-notFixed');
+        if (headerFixed && headerNotFixed) {
+          if (st >= 300) {
+            headerFixed.style.display = 'none';
+            headerNotFixed.style.display = '';
+          } else {
+            headerNotFixed.style.display = 'none';
+            headerFixed.style.display = '';
+          }
+        }
+        lastScrollTop = st;
+      });
+
+    })();
+
+    // === Manuelle Theme-Umschaltung (Dark/Light Mode) ===
+  var toggleBtn = document.getElementById('themeToggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      // Aktuell gesetztes Theme auslesen
+      var currentTheme = document.documentElement.getAttribute('data-theme');
+      var targetTheme = 'light';
+
+      // Wenn kein Theme gesetzt ist, schauen was das Betriebssystem vorgibt
+      if (!currentTheme) {
+        currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      // Theme umdrehen
+      if (currentTheme === 'light') {
+        targetTheme = 'dark';
+      }
+
+      // Neues Theme an das HTML-Tag übergeben und im Browser speichern
+      document.documentElement.setAttribute('data-theme', targetTheme);
+      localStorage.setItem('theme', targetTheme);
+    });
+  }
+
+  // === Map-Stats auf der Startseite laden ===
+  var mapStatsEl = document.getElementById('mapStats');
+  if (mapStatsEl) {
+    fetch('photomap/photomap.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        mapStatsEl.textContent = 'Gesamt ' + data.total_rows + ' Orte besucht';
+      })
+      .catch(function() {
+        mapStatsEl.textContent = 'Fotos auf der Karte';
+      });
+  }
+
+    </script>
+  </body>
+  {{!-- Version 06.2026.17 --}}
+</html>

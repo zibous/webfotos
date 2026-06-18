@@ -1,0 +1,21 @@
+  {{#if album.albums}} 
+    {{!-- render all album teaser--}}
+    {{#compare album.files.length '>' 1}}
+      <div class="space3em">&nbsp;</div>
+    {{/compare}}
+    <div id="albums" class="cards clearfix{{#compare album.files.length '==' 0}} nocover{{/compare}}">
+      {{#each album.albums~}}
+        <a href="{{relative url}}" class="card" title="{{@root.settings.albumCardTitle}}{{title}}">          
+          <div class="card-photo" style="background-image: url('{{relative previews.0.urls.small}}')"></div>
+          <div  class="card-info">
+              <h3>{{title}}</h3>
+              <div class="summary">{{translate @root.settings summary}}</div>
+              <div class="date">{{{date stats.fromDate}}} - {{{date stats.toDate}}}</div>
+          </div>
+        </a>
+      {{~/each}}
+    </div>
+    {{#compare album.files.length '>' 1}}
+      <div class="space3em">&nbsp;</div>
+    {{/compare}}
+  {{/if}}

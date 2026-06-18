@@ -1,0 +1,109 @@
+#container .page-teaser-outer,
+#container .page-teaser-outer-media {
+    position: relative;
+    height: 660px;
+    width: 100%;
+}
+
+.page-teaser:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.page-teaser {
+    position: relative;
+    height: 620px;
+    width: 100%;
+    background-size: 100%;
+    background-attachment: scroll;
+    background-position: 50% 50%;
+    background-color: @body-background;
+    overflow: hidden;
+    background-size: cover;
+    margin: 0;
+    text-transform: uppercase;
+    color: @header-titlecolor;
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+}
+
+.page-teaser-desc {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    color: @header-titlecolor;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    cursor: default;
+}
+
+.page-teaser-desc h2,
+.page-header .home,
+.page-albumtitle {
+    font-size: 3.0em;
+    line-height: 1.2em;
+    color: @header-titlecolor;
+    font-weight: 600;
+    text-shadow: 0px 2px 3px #555;
+    opacity: 1;
+    transform: translate(0);
+}
+
+.page-teaser-desc h3 {
+    font-size: 2.0em;
+    line-height: 1.2em;
+    margin: 1em;
+    color: @header-titlecolor;
+    font-weight: 600;
+    text-transform: none;
+    opacity: 1;
+    transform: translate(0);
+}
+
+.page-teaser-desc .avatar-small {
+    position: relative;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.page-teaser-desc a.cover-link {
+    color: @card-background-color;
+    font-size: 1.0em;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1.2em;
+    padding: 8px;
+    text-transform: lowercase;
+}
+
+.page-teaser-desc a.cover-link:hover {
+    color: @hovercolor;
+    box-shadow: @box-shadow;
+    background: @card-background-color;
+    border-radius: 4px;
+}
+
+.page-header .home {
+    position: relative;
+    top: 100px;
+}
+
+.page-albumtitle {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    top: 80px;
+}
+
+.page-teaser-desc a.avatar-link:hover .avatar-small{
+    transform: scale(0.90, 0.90);
+    cursor: pointer;
+}

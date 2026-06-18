@@ -1,0 +1,49 @@
+// -----------------------------------
+// Footer
+// -----------------------------------
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 36px;
+    line-height: 30px;
+    background: @footer-background;
+    color: @footer-foreground;
+    box-shadow: @footer-box-shadow;
+    font-size: .8em;
+    z-index: 1000;
+    line-height: 3.0em;
+    padding-right: 36px;
+    cursor: default;
+}
+
+footer .right {
+    position: absolute;
+    right: 12px;
+    top:0;
+    text-align: right;
+    width: 45%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+footer .left {
+    position: absolute;
+    left: 12px;
+    top:0;
+    text-align: left;
+    width: 45%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+footer a {
+    color: @footer-foreground;
+}
+
+footer a:hover {
+    color: @hovercolor;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<!--http://webapps.lab.dev/webfotos/theme-cards-flow/tools/gps/GPSPhotos.html -->
+
+<head>
+    <title>Meine Urlaubsfotos</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:image" content="route.png" />
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+        })();
+    </script>
+    <style>html { background: #1c1c1e; }</style>
+    <link rel="stylesheet" href="../../theme/public/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="../../theme/public/leaflet/markercluster/MarkerCluster.css" />
+    <link rel="stylesheet" href="../../theme/public/leaflet/photo/Leaflet.Photo.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+    <link rel="stylesheet" href="photomap.css" />
+
+</head>
+
+<body>
+
+    <div class="stickybar">
+        <a href="../index.html">
+            <img id="logo" src="../public/assets/icons/apple-touch-icon.png" title="Peter&#x27;s Fotobuch">
+        </a>
+        <h1>Fotobuch Peter Siebler</h1>
+        <a href="../index.html" class="map-link" title="Zurück zum Fotobuch">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div id="map"></div>
+    </div>
+    
+    <footer>
+        <div class="left" id="map-stats">Fotobuch Peter Siebler</div>
+        <div class="right"><span>All images courtesy of </span><a href="https://siebler.at">siebler.at</a>
+            &nbsp;&bull;&nbsp;Copyright &copy;2019 Peter Siebler. All rights reserved.
+        </div>    
+    </footer>
+    
+    <script src="../../theme/public/leaflet/photo/reqwest.min.js"></script>
+    <script src="../../theme/public/leaflet/leaflet.js"></script>
+    <script src="../../theme/public/leaflet/TileLayer.Grayscale.js"></script>
+    <script src="../../theme/public/leaflet/markercluster/leaflet.markercluster.js"></script>
+    <script src="../../theme/public/leaflet/photo/Leaflet.Photo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <script src="photomap.js"></script>
+
+
+</body>
+
+</html>

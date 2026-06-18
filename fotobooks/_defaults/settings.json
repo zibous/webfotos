@@ -1,0 +1,50 @@
+{
+    "author": "Peter Siebler",
+    "logo": "public/assets/icons/apple-touch-icon.png",
+    "application": "Peter's Fotobuch",
+    "menutitle": "Meine Alben",
+    "covertitle": "Unvergessliche Ereignisse",
+    "appVersion": "v2.18.0",
+    "assets": "public/assets/",
+    "tabHome": "Fotobuch",
+    "albumPrefix": "Album",
+    "albumsPrefix": "Alben",
+    "albumCardTitle": "Öffne Album ",
+    "linkbackTitle": "Zurück",
+    "copyright": "2019 Peter Siebler. All rights reserved.",
+    "copyMetaFiles": {
+        "source": "/photos/",
+        "target": "/output/media/large/"
+    },
+    "writeMetaData": {
+        "target": "/output/media/large/",
+        "linkpath": "media/large/",
+        "metatags": {
+            "Allgemein": {
+                "Dateiname": "File.Filename",
+                "Album": "File.Directory",
+                "Beschreibung": "Image.Description",
+                "Fotograf": "Author.Artist"
+            },
+            "Foto": {
+                "Fotoapperat": "EXIF.Model",
+                "Marke": "EXIF.Make",
+                "Bildgröße": "Composite.ImageSize",
+                "Auflösung": "Composite.Megapixels",
+                "Blende": "Composite.ShutterSpeed",
+                "Belichtung": "Composite.LightValue",
+                "ISO": "EXIF.ISO",
+                "Focus": "EXIF.FocalLength",
+                "Belichtungsdauer": "EXIF.ExposureTime"
+            },
+            "Geografie": {
+                "Datum/Uhrzeit": "Composite.GPSDateTime",
+                "GPSLatitude": "Composite.GPSLatitude",
+                "GPSLongitude": "Composite.GPSLongitude",
+                "Höhe": "Composite.GPSAltitude",
+                "Land": "Composite.Country",
+                "Stadt": "Composite.City"
+            }
+        }
+    }
+}

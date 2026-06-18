@@ -1,0 +1,20 @@
+# Fotos und Output (werden per Volume gemountet)
+fotobooks/
+
+# Git & IDE
+.git/
+.gitignore
+.DS_Store
+
+# Logs
+*.log
+
+# Kiro
+.kiro/
+
+# Scripts (werden per Volume gemountet)
+scripts/
+
+# Dokumentation
+README-Docker.md
+Makefile

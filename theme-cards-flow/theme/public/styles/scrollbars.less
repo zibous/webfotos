@@ -1,0 +1,35 @@
+// -----------------------------------
+// Scrollbars for webkit browser
+// -----------------------------------
+
+@scrollbar-background: #dedede;
+@scrollbar-thumb: #8E8E93;
+@scrollbar-border: #D2DBDD;
+@scrollbar-shadow: #E2E2DD;
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px
+}
+
+::-webkit-scrollbar-button {
+    width: 5px;
+    height: 5px
+}
+
+::-webkit-scrollbar-track {
+    background: @scrollbar-background;
+    border: thin solid transparent;
+    box-shadow: 0 0 3px @scrollbar-shadow inset;
+    border-radius: 5px
+}
+
+::-webkit-scrollbar-thumb {
+    background: @scrollbar-thumb;
+    border: thin solid transparent;
+    border-radius: 5px
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: @scrollbar-thumb
+}

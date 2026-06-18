@@ -1,0 +1,162 @@
+.lg-exif {
+    margin: 0;
+    padding: 0;
+    background-color: #222;
+}
+
+.lg-exif-topbar {
+    position: relative;
+    padding: 0.8em 1em;
+    height: 48px;
+    width: 100%;
+    border-bottom: 2px #000 solid;
+    transition: box-shadow 250ms;
+}
+
+div.metadata {
+    height: calc(100% - 60px);
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: visible;
+}
+
+div.metadata #map {
+    margin: 1.2em 1.0em;
+}
+
+div.metadata div.content {
+    position: relative;
+    margin: 8px 4px 0 0;
+    height: 100%;
+    padding: 1em;
+    overflow: auto;
+}
+
+div.metadata h3 {
+    display: block;
+    font-size: 1em;
+    line-height: 1.2em;
+    font-weight: 500;
+    width: 100%;
+    float: none;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-transform: uppercase;
+    padding-top: 2em;
+    margin-bottom: 2em;
+    color: rgba(255, 255, 255, 0.699);
+    padding: 0;
+    margin: 20px 0 12px 0;
+    background-color: transparent;
+}
+
+div.metadata h3:after {
+    background-color: rgba(255, 255, 255, 0.699);
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    left: 9px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+h3.icon-map {
+    width: 92% !important;
+    margin-left: 10px !important;
+    margin-top: 12px !important;
+    height: 24px;
+    display: none;
+}
+
+div.metadata div.content::-webkit-scrollbar,
+#partners-list::-webkit-scrollbar:hover {
+    width: 5px;
+}
+
+div.metadata div.content::-webkit-scrollbar-thumb,
+#partners-list::-webkit-scrollbar-thumb:hover {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(150, 150, 150, 0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+div.content label {
+    display: block;
+    font-size: 0.76em;
+    color: rgba(255, 255, 255, 0.699);
+    margin-top: 0.8em;
+}
+
+div.content span {
+    display: inline-block;
+    font-size: 0.85em;
+    margin: 0;
+    margin: 0 0.5em 0 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #d2d2d2;
+}
+
+.lg-exif .lg-hide {
+    margin-top: 1px;
+}
+
+.icon-data {
+    line-height: 1.2em;
+    display: inline-block;
+}
+
+.icon-data::before {
+    content: "  ";
+    margin-left: 12px;
+    vertical-align: middle
+}
+
+.icon-caption::before {
+    content: "\e92b";
+    margin-right: 5px;
+}
+
+#iso::before {
+    content: "\e900";
+}
+
+#fnumber::before {
+    content: "\e902";
+}
+
+#focallength::before {
+    content: "\e932";
+}
+
+#exposuretime::before {
+    content: "\e92c";
+}
+
+#make::before {
+    content: "\e90d";
+    margin-right: 5px;
+}
+
+#datetimeoriginal::before {
+    content: "\e904";
+    margin-right: 5px;
+}
+
+#gpslatituderef::before,
+#gpslongituderef::before,
+.icon-map::before {
+    content: "\e91d";
+    margin-right: 5px;
+}
+
+#gpslongitude::before,
+#gpslatitude::before {
+    content: "\e925";
+}

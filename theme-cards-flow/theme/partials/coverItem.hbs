@@ -1,0 +1,23 @@
+
+{{!-- 
+   check if the first image is a cover images  
+--}}
+<div class="page-teaser" style="background-image: url('{{relative  album.files.[0].urls.large}}')">
+    <div class="page-teaser-desc">
+        <h2>{{settings.albumPrefix}}&nbsp;{{album.title}}</h2>
+        {{#if album.files.0.meta.exif.ImageDescription.length }} 
+        <h3>{{{album.files.0.meta.exif.ImageDescription}}}</h3> 
+        {{/if}}
+        {{#if album.files.0.meta.exif.Copyright.length }}
+            {{#if album.files.0.meta.exif.DocumentName.length }}
+                 <a class="avatar-link" href="{{album.files.0.meta.exif.DocumentName}}" title="{{album.files.0.meta.exif.DocumentName}}">
+                     <img src="{{@root.settings.assets}}{{album.files.0.meta.exif.Copyright}}" class="avatar-small" alt="" title="{{album.files.0.meta.exif.DocumentName}}"></img>
+                </a>
+            {{else}}
+                <img src="{{@root.settings.assets}}{{album.files.0.meta.exif.Copyright}}" class="avatar-small" alt="" title="{{album.files.0.meta.exif.Artist}}"></img>
+            {{/if}}
+        {{/if}}
+        <p>{{album.files.0.meta.exif.Artist}}</p>        
+        <p>{{translate @root.settings album.summary}}</p>        
+    </div>
+</div>

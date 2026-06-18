@@ -1,0 +1,27 @@
+{{!--  footer   --}}
+{{#if settings.footer}}
+    <footer>
+        {{#compare album.title '==' 'Home'}}
+            <div class="left cd-open">{{gallery.title}}&nbsp;&bull;&nbsp;{{translate @root.settings album.summary}}</div>
+        {{else}}
+        <div class="left">{{gallery.title}}&nbsp;&bull;&nbsp;{{settings.albumPrefix}}&nbsp;&bull;&nbsp;{{album.title}}&nbsp;&bull;&nbsp;{{translate @root.settings album.summary}}</div>
+        {{/compare}}
+         <div class="right">{{#if settings.footer}}{{{settings.footer}}}{{/if}}
+            {{#if settings.copyright}}&nbsp;&bull;&nbsp;Copyright &copy;{{settings.copyright}}{{/if}}
+        </div>
+    </footer>
+{{else}}
+    {{#if gallery.footer}}
+        <footer>
+            {{#compare album.title '==' 'Home'}}
+            <div class="left cd-open">{{gallery.title}}&nbsp;&bull;&nbsp;{{translate @root.settings album.summary}}</div>
+            {{else}}
+            <div class="left">{{gallery.title}}&nbsp;&bull;&nbsp;{{settings.albumPrefix}}&nbsp;&bull;&nbsp;{{album.title}}&nbsp;&bull;&nbsp;{{translate @root.settings album.summary}}</div>
+            {{/compare}}
+            <div class="right">{{#if gallery.footer}}{{{gallery.footer}}}{{/if}}
+                {{#if settings.copyright}}&nbsp;&bull;&nbsp;Copyright &copy;{{settings.copyright}}{{/if}}
+            </div>    
+        </footer>
+    {{/if}}
+{{/if}}
+   

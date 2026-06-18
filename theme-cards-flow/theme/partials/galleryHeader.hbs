@@ -1,0 +1,68 @@
+{{#compare album.title '!=' 'Home'}}
+  <nav id="menu" class="menubar">  
+    <a class="menubutton" href="#">&#9776;</a>
+    <button id="themeToggle" class="theme-toggle-nav" title="Design wechseln">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <h1 id="sitelogo" class="logo">        
+        <a href="{{relative gallery.home.url}}">
+            {{#if settings.logo }}
+            <img id="logo" src="{{settings.logo}}" title="{{settings.application}}"></img>
+            {{else}}
+            <img id="logo" src="public/assets/avatar.jpg" title="Back to Home"></img>
+            {{/if}}
+        </a>
+    </h1>
+    {{#if @root.settings.assets}}
+    <span class="page-title">{{{settings.tabHome}}} {{album.title}}</span>
+    {{else}}
+    <span class="page-title">{{{title}}}</span>
+    {{/if}}
+  </nav>
+{{/compare}}
+{{#compare album.files.length '==' 1}} 
+  {{#compare album.title '==' 'Home'}}
+    <div class="stickybar">
+      {{#if settings.logo }}
+      <img id="logo" src="{{settings.logo}}" title="{{settings.application}}"></img>
+      {{/if}}
+      <h1>{{gallery.title}}</h1>
+      <button id="themeToggle" class="theme-toggle-nav" title="Design wechseln">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  {{/compare}}
+  <div class="page-top{{#compare album.title '==' 'Home'}} page-home{{/compare}}">
+      <div class="page-header" style="background-image: url('{{relative  album.files.[0].urls.large}}')">
+        {{#compare album.title '==' 'Home'}}
+        <h2 class="home">{{settings.covertitle}}</h2>
+        {{/compare}}
+        <div class="page-teaser-desc">
+            {{#compare album.title '!=' 'Home'}}
+            <h2>{{settings.albumsPrefix}}&nbsp;{{album.title}}</h2>
+            {{/compare}}
+            <h3>{{album.files.0.meta.exif.ImageDescription}}</h3> 
+            {{#if album.files.0.meta.exif.Copyright.length }}
+                {{#if album.files.0.meta.exif.DocumentName.length }}
+                    <a class="avatar-link" href="{{album.files.0.meta.exif.DocumentName}}" title="{{album.files.0.meta.exif.DocumentName}}">
+                        <img src="{{@root.settings.assets}}{{album.files.0.meta.exif.Copyright}}" class="avatar-small" alt="" title="{{album.files.0.meta.exif.DocumentName}}"></img>
+                    </a>
+                {{else}}
+                    <img src="{{@root.settings.assets}}{{album.files.0.meta.exif.Copyright}}" class="avatar-small" alt="" title="{{album.files.0.meta.exif.Artist}}"></img>
+                {{/if}}
+            {{/if}}
+            <p>{{album.files.0.meta.exif.Artist}}</p>   
+            <p>{{translate @root.settings album.summary}}</p>    
+            <a href="{{relative 'photomap/index.html'}}" class="map-link-cover" id="mapLinkCover" title="Fotos auf der Karte">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span id="mapStats"></span>
+            </a>
+        </div>
+      </div>
+  </div>
+{{/compare}}
+{{#compare album.files.length '==' 0}}
+  <div class="page-albumtitle">
+  <h2>{{settings.albumPrefix}} {{album.title}}</h2>
+  </div>
+{{/compare}}

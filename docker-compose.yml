@@ -1,0 +1,31 @@
+###############################################################################
+# docker-compose.yml für thumbsup Fotogalerie-Generator
+#
+# Verwendung:
+#   ALBUM=testalbum docker compose run --rm thumbsup --config /config/config.json
+#
+# Variablen:
+#   ALBUM - Name des Albums in fotobooks/ (default: testalbum)
+###############################################################################
+
+services:
+  thumbsup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: webfotos-thumbsup:latest
+    environment:
+      - ALBUM=${ALBUM:-testalbum}
+    volumes:
+      # Quellfotos (der Album-Ordner)
+      - ./fotobooks/${ALBUM:-testalbum}:/photos:ro
+      # Generierte Ausgabe
+      - ./fotobooks/www/${ALBUM:-testalbum}:/output
+      # Defaults + Album-Overrides für Config-Merge
+      - ./fotobooks/_defaults:/defaults:ro
+      - ./fotobooks/${ALBUM:-testalbum}/album.json:/album/album.json:ro
+      # Merge-Script
+      - ./scripts:/scripts:ro
+      # Custom Theme (live editierbar ohne rebuild)
+      - ./theme-cards-flow/theme:/app/theme-cards-flow/theme:ro
+    command: ["--config", "/config/config.json"]

@@ -1,0 +1,99 @@
+#albums {
+    margin: 0 2% 0 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#albums.nocover {
+    margin-top: 100px;
+}
+
+.card {
+    position: relative;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    margin-right: 2em;
+    margin-bottom: 3em;
+    position: relative;
+    overflow: hidden;
+    width: 340px;
+    height: 350px;
+    box-shadow: @box-shadow;
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+    border-radius: 6px;
+    background-color: @card-background-color;
+    color: @fontcolor;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.card:hover {
+    color: @fontcolor;
+    transform: scale(0.95, 0.95);
+    cursor: pointer;
+}
+
+.card-photo {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    width: 340px;
+    height: 235px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;    
+}
+
+.card:hover .card-photo {
+    transition: all 1s ease-in-out;
+    width: 440px;
+}
+
+#albums .card-info {
+    position: relative;
+    padding: 4px 1em 0 1em;
+    background: @card-background-color;
+    font-size: 0.9em;
+    line-height: 1.5em;
+    margin: 0;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    font-weight: 300;
+    z-index: 10;
+    bottom: 0;
+}
+
+#albums .card-info h3 {
+    font-size: 1.3em;
+    line-height: 2.2em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#albums .card-info .summary{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.card-avatar{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    z-index: 500;
+}

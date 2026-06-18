@@ -1,0 +1,131 @@
+// -----------------------------------
+// Variables for user customisation
+// -----------------------------------
+
+/* Style version 2026-06-17 20:08 */
+
+@header-titlecolor: #FFFFFF;
+@header-shadowcolor: 0 0 7px 0 rgba(0, 0, 0, .35);
+@header-text-shadow: 0px 2px 3px #424242;
+
+// Statische Werte (bleiben gleich)
+@mobile-trigger: 480px;
+@hovercolor: #007ee5;
+@bluecolor: #007ee5;
+
+// 1. DEFINITION DER BEIDEN THEMES IN LESS
+// --- LIGHT MODE FARBEN & BILDER ---
+@light-font: #1d1d1f;
+@light-crumbs-bg: #FFFFFF;
+@light-sidebar-bg: #fafafaf0;
+@light-menubar-bg: #fafafa;
+@light-card-bg: #FFFFFF;
+@light-glass: rgba(255, 255, 255, 0.75);
+@light-border: rgba(255, 255, 255, 0.4);
+@light-shadow: rgba(0, 0, 0, 0.08);
+@light-bg-image: url('assets/bg-light.jpg');
+
+// --- DARK MODE FARBEN & BILDER ---
+@dark-font: #f5f5f7;
+@dark-crumbs-bg: #1c1c1e;
+@dark-sidebar-bg: #333333;
+@dark-menubar-bg: #161617;
+@dark-card-bg: #1c1c1e;
+@dark-glass: rgba(22, 22, 23, 0.75);
+@dark-border: rgba(255, 255, 255, 0.1);
+@dark-shadow: rgba(0, 0, 0, 0.4);
+@dark-bg-image: url('assets/bg-dark.jpg');
+
+// 2. DIE BRÜCKE: NATIVE CSS-VARIABLEN BEFÜLLEN (Default: Dark)
+:root {
+  --font-color: @dark-font;
+  --crumbs-bg: @dark-crumbs-bg;
+  --sidebar-bg: @dark-sidebar-bg;
+  --menubar-bg: @dark-menubar-bg;
+  --card-bg: @dark-card-bg;
+  --glass-bg: @dark-glass;
+  --glass-border: @dark-border;
+  --shadow-color: @dark-shadow;
+  --bg-image: @dark-bg-image;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --font-color: @light-font;
+    --crumbs-bg: @light-crumbs-bg;
+    --sidebar-bg: @light-sidebar-bg;
+    --menubar-bg: @light-menubar-bg;
+    --card-bg: @light-card-bg;
+    --glass-bg: @light-glass;
+    --glass-border: @light-border;
+    --shadow-color: @light-shadow;
+    --bg-image: @light-bg-image;
+  }
+}
+
+html[data-theme="light"] {
+  --font-color: @light-font;
+  --crumbs-bg: @light-crumbs-bg;
+  --menubar-bg: @light-menubar-bg;
+  --sidebar-bg: @light-sidebar-bg;
+  --card-bg: @light-card-bg;
+  --glass-bg: @light-glass;
+  --glass-border: @light-border;
+  --shadow-color: @light-shadow;
+  --bg-image: @light-bg-image; // <-- NEU HIER
+}
+
+html[data-theme="dark"] {
+  --font-color: @dark-font;
+  --crumbs-bg: @dark-crumbs-bg;
+  --menubar-bg: @dark-menubar-bg;
+  --sidebar-bg: @dark-sidebar-bg;
+  --card-bg: @dark-card-bg;
+  --glass-bg: @dark-glass;
+  --glass-border: @dark-border;
+  --shadow-color: @dark-shadow;
+  --bg-image: @dark-bg-image; // <-- NEU HIER
+}
+
+// 3. THUMBSUP-VARIABLEN AUF DYNAMISCHE VARIABLE MAPPEEN
+@fontcolor: var(--font-color);
+@text-color: var(--font-color);
+@actioncolor: var(--font-color);
+
+@crumbs-background: var(--crumbs-bg);
+@crumbs-textcolor: var(--font-color);
+
+@menubar-background: var(--menubar-bg);
+@card-background-color: var(--card-bg);
+
+@body-background: #030303;
+@container-headerborder: var(--glass-border);
+@borders: var(--glass-border);
+
+@crumbs-box-shadow: 0 2px 8px var(--shadow-color);
+@menubar-box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.30), 0 15px 12px var(--shadow-color);
+@box-shadow: 0 12px 40px var(--shadow-color);
+
+@footer-foreground: #E0E0E0;
+@footer-background: rgba(0, 0, 0, 0.85);
+@footer-box-shadow: 7px 0 0px 0 rgba(0, 0, 0, .35);
+
+// -----------------------------------
+// all style settings
+// -----------------------------------
+@import "public/styles/generic.less";
+@import "public/styles/font.less";
+@import "public/styles/header.less";
+@import "public/styles/pagemenu.less";
+@import "public/styles/pagecover.less";
+@import "public/styles/structure";
+@import "public/styles/album-cards.less";
+@import "public/styles/thumbnails.less";
+@import "public/styles/lightgallery.less";
+@import "public/styles/coverItem.less";
+@import "public/styles/footer.less";
+@import "public/styles/megamenu.less";
+@import "public/styles/mobile.less";
+@import "public/styles/scrollbars.less";
+@import "public/styles/metadata.less";
+@import (inline) "public/styles/gallery-grid.css";

@@ -1,0 +1,147 @@
+// -----------------------------------
+// Generic styles
+// -----------------------------------
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline-style: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    height: 100%;
+}
+
+html,
+body {
+    /* DER NEUE SYSTEM-FONT-STACK (Apple- & Premium-Look ohne extra Downloads) */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 1.5;
+    color: @fontcolor;
+
+    /* Festes Apple-App-Layout (Kein Mitscrollen des Hintergrunds) */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    /* Scrollen nur auf der Y-Achse erlauben */
+
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    /* DYNAMISCHES HINTERGRUNDBILD PER CSS-VARIABLE */
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transition: background-image 0.5s ease-in-out, color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Geringe Korrekturen für den Body-Inhalt */
+body {
+    margin-bottom: 1em;
+}
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('assets/fonts/Quicksand/Quicksand-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Quicksand-Light';
+    src: url('assets/fonts/Quicksand/Quicksand-Light.ttf');
+}
+
+a {
+    text-decoration: none;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+    color: @fontcolor;
+}
+
+a:active,
+a:hover {
+    text-decoration: none;
+    color: @hovercolor;
+    cursor: pointer;
+    outline: none;
+}
+
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+.noselect {
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+hr {
+    background-color: #eee;
+    border: 0 none;
+    color: #eee;
+    height: 1px;
+}
+
+.space36 {
+    display: inline-block;
+    height: 36px;
+    width: 100%;
+}
+
+.space3em {
+    display: inline-block;
+    height: 3em;
+    line-height: 3em;
+    width: 100%;
+}
+
+/* Theme-Toggle Button – Basis-Styling (Position wird im Header definiert) */
+.theme-toggle-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: var(--font-color);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+}
