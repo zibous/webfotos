@@ -8,6 +8,16 @@
 #   make album NAME=fotobuch
 # ##############################################################################
 
+SHELL := /bin/bash
+
+# --- 1. DYNAMISCHE PARAMETER & VARIABLEN ---
+PROJECT_NAME = $(notdir $(CURDIR))
+FORGEJO_IP   = 10.1.1.19
+FORGEJO_PORT = 3143
+FORGEJO_USER = peter
+FORGEJO_URL  = http://$(FORGEJO_IP):$(FORGEJO_PORT)/$(FORGEJO_USER)/$(PROJECT_NAME).git
+
+
 .PHONY: build album photomap preview shell check clean rebuild help
 
 .DEFAULT_GOAL := help
@@ -87,6 +97,48 @@ publish_nas:
 
 publish_server:
 	bash ./publish/publish.sh
+
+
+git-status: ## Zeigt die aktuelle Forgejo Server-Verbindung (Remote URL) an
+	@echo "🔍 Überprüfe Git-Remote-Konfiguration..."
+	@if ! git remote get-url origin >/dev/null 2>&1; then \
+		echo "❌ Fehler: 'origin' ist noch nicht eingerichtet!"; \
+		echo "👉 Bitte führe aus: make git-setup"; \
+		exit 1; \
+	fi
+	@URL=$$(git remote get-url origin); \
+	echo "🍏 Forgejo-Server ist aktiv verbunden!" ; \
+	echo "🔗 Aktuelle URL: $$URL"
+
+git-setup: ## Git-Verbindung zum Forgejo-Server automatisch einrichten oder korrigieren
+	@echo "🛠️ Initialisiere Forgejo Server-Verbindung für '$(PROJECT_NAME)'..."
+	@if ! git remote get-url origin >/dev/null 2>&1; then \
+		git remote add origin $(FORGEJO_URL); \
+		echo "🎉 Server-URL erfolgreich neu angelegt!"; \
+	else \
+		git remote set-url origin $(FORGEJO_URL); \
+		echo "🔄 Bestehende Server-URL erfolgreich korrigiert!"; \
+	fi
+	@echo "🔗 Ziel-Adresse: $(FORGEJO_URL)"
+
+git-update: git-status ## Git Forgejo Update durchführen (Normaler Zwischenstand)
+	git add -A
+	git commit -m "Update am $$(date +'%Y-%m-%d %H:%M')" || true
+	git push -u origin main
+
+
+git-release: git-status ## Neues Versions-Tag automatisch berechnen, erstellen und zu Forgejo pushen
+	git add -A
+	git commit -m "Release-Vorbereitung am $$(date +'%Y-%m-%d %H:%M')" || true
+	git push origin main
+	@LAST_TAG=$$(git describe --tags --abbrev=0 2>/dev/null || echo "v2.1.0"); \
+	NEXT_TAG=$$(echo $$LAST_TAG | awk -F. '{print $$1"."$$2"."$$3+1}'); \
+	echo "🍏 Letzte Version war: $$LAST_TAG"; \
+	echo "⚡ Berechnete neue Version: $$NEXT_TAG"; \
+	echo "📦 Erstelle Git-Tag $$NEXT_TAG mit aktuellem Zeitstempel..."; \
+	git tag -a $$NEXT_TAG -m "Automatisches Release $$NEXT_TAG am $$(date +'%Y-%m-%d %H:%M') via Makefile"; \
+	git push origin $$NEXT_TAG; \
+	echo "🎉 Version $$NEXT_TAG erfolgreich an Forgejo übermittelt!"
 
 # Hilfe
 help:
