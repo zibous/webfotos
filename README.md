@@ -2,10 +2,12 @@
 
 [![License](https://img.shields.io/badge/license-Open%20Source-green.svg)](https://opensource.org)
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?logo=ubuntu&logoColor=white)](#)
+![Linux Tests](https://github.com/thumbsup/thumbsup/actions/workflows/test-linux.yml/badge.svg)
 [![Bash](https://img.shields.io/badge/Bash-4EAA25?logo=gnubash&logoColor=fff)](#)
 [![Node.js](https://img.shields.io/badge/Node.js-20-339933.svg)](https://nodejs.org/)
 [![thumbsup](https://img.shields.io/npm/v/thumbsup?label=thumbsup&color=0077ff)](https://github.com/thumbsup/thumbsup)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](#)
+[![CSS](https://img.shields.io/badge/CSS-639?logo=css&logoColor=fff)](#)
 [![Support author](https://img.shields.io/badge/buy%20me%20a%20coffee-orange.svg)](https://www.buymeacoff.ee/zibous)
 
 ![Screenshot der Anwendung](./docs/fotogalerie.png)
