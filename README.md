@@ -55,24 +55,34 @@ Kein Node.js auf dem Host erforderlich.
 
 ## Schnellstart
 
-```bash
-# Image bauen
-make build
 
-# Neues Album anlegen
-mkdir -p fotobooks/meinalbum
-echo '{"title": "Mein Album", "covertitle": "Meine Reisen"}' > fotobooks/meinalbum/album.json
+### Schritt-für-Schritt-Installation
 
-# Fotos reinkopieren (Unterordner = Alben)
-cp -r /pfad/zu/fotos/* fotobooks/meinalbum/
+1. Repository klonen und Verzeichnis betreten
+    ```bash
+    git clone https://github.com/zibous/webfotos.git
+    cd webfotos
+    ```
 
-# Album generieren
-make album NAME=meinalbum
+2. Docker-Image bauen
+    ```bash
+    # Image bauen
+    make build
 
-# Vorschau im Browser
-make preview
-# → http://localhost:8080/meinalbum/
-```
+    # Neues Album anlegen
+    mkdir -p fotobooks/meinalbum
+    echo '{"title": "Mein Album", "covertitle": "Meine Reisen"}' > fotobooks/meinalbum/album.json
+
+    # Fotos reinkopieren (Unterordner = Alben)
+    cp -r /pfad/zu/fotos/* fotobooks/meinalbum/
+
+    # Album generieren
+    make album NAME=meinalbum
+
+    # Vorschau im Browser
+    make preview
+    # → http://localhost:8080/meinalbum/
+    ```
 
 ---
 
