@@ -1,5 +1,7 @@
 # thumbsup Fotogalerie – Docker Setup
 
+![Screenshot der Anwendung](./docs/fotogalerie.png)
+
 ## Überblick
 
 Docker-basierter **thumbsup v2.18.0** Galerie-Generator mit Custom Theme (`theme-cards-flow`).
@@ -9,44 +11,44 @@ Kein Node.js auf dem Host erforderlich.
 ## Application Workflow
 
 ```
-┌────────────────────────────────────────────────────────────────────────────┐
-│                          make album NAME=fotobuch                          │
-└───────────────────────────────────┬────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────┐
+│                          make album NAME=fotobuch                      │
+└───────────────────────────────────┬────────────────────────────────────┘
                                     │
                                     ▼
-┌────────────────────────────────────────────────────────────────────────────┐
-│  Docker Container (node:20-bookworm + thumbsup@2.18.0)                    │
-│                                                                            │
-│  1. Config Merge                                                           │
-│     ┌────────────────┐     ┌──────────────┐     ┌──────────────────┐      │
-│     │ _defaults/     │  +  │ album.json   │  →  │ /config/         │      │
-│     │ config.json    │     │ (Overrides)  │     │ config.json      │      │
-│     │ settings.json  │     │              │     │ settings.json    │      │
-│     └────────────────┘     └──────────────┘     └──────────────────┘      │
-│                                                                            │
-│  2. thumbsup --config /config/config.json                                  │
-│     ┌────────────────┐                          ┌──────────────────┐      │
-│     │ /photos/ (ro)  │                          │ /output/         │      │
-│     │ ├── Album 1/   │  → exiftool → GM →      │ ├── index.html   │      │
-│     │ ├── Album 2/   │    Thumbnails +          │ ├── albums/      │      │
-│     │ └── ...        │    HTML generieren       │ ├── media/       │      │
-│     └────────────────┘                          │ └── public/      │      │
-│                                                 └──────────────────┘      │
-│  3. Photomap (GPS → Leaflet-Karte)                                         │
-│     ┌────────────────┐                          ┌──────────────────┐      │
-│     │ EXIF GPS-Daten │  → tools/photomap/ →     │ /output/photomap/│      │
-│     │ aus allen Fotos│    Koordinaten + HTML    │ index.html       │      │
-│     └────────────────┘                          └──────────────────┘      │
-└────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────┐
+│  Docker Container (node:20-bookworm + thumbsup@2.18.0)                 │
+│                                                                        │
+│  1. Config Merge                                                       │
+│     ┌────────────────┐     ┌──────────────┐     ┌──────────────────┐   │
+│     │ _defaults/     │  +  │ album.json   │  →  │ /config/         │   │
+│     │ config.json    │     │ (Overrides)  │     │ config.json      │   │
+│     │ settings.json  │     │              │     │ settings.json    │   │
+│     └────────────────┘     └──────────────┘     └──────────────────┘   │
+│                                                                        │
+│  2. thumbsup --config /config/config.json                              │
+│     ┌────────────────┐                          ┌──────────────────┐   │
+│     │ /photos/ (ro)  │                          │ /output/         │   │
+│     │ ├── Album 1/   │  → exiftool → GM →       │ ├── index.html   │   │
+│     │ ├── Album 2/   │    Thumbnails +          │ ├── albums/      │   │
+│     │ └── ...        │    HTML generieren       │ ├── media/       │   │
+│     └────────────────┘                          │ └── public/      │   │
+│                                                 └──────────────────┘   │
+│  3. Photomap (GPS → Leaflet-Karte)                                     │
+│     ┌────────────────┐                          ┌──────────────────┐   │
+│     │ EXIF GPS-Daten │  → tools/photomap/ →     │ /output/photomap/│   │
+│     │ aus allen Fotos│    Koordinaten + HTML    │ index.html       │   │
+│     └────────────────┘                          └──────────────────┘   │
+└────────────────────────────────────────────────────────────────────────┘
                                     │
                                     ▼
-┌────────────────────────────────────────────────────────────────────────────┐
-│  fotobooks/www/fotobuch/  (statische HTML-Galerie, Webserver-ready)        │
-│                                                                            │
-│  make preview  → python3 -m http.server 8080                               │
-│  make publish_nas  → rsync/scp auf NAS                                     │
-│  make publish_server → scp auf Webserver                                   │
-└────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────┐
+│  fotobooks/www/fotobuch/  (statische HTML-Galerie, Webserver-ready)    │
+│                                                                        │
+│  make preview  → python3 -m http.server 8080                           │
+│  make publish_nas  → rsync/scp auf NAS                                 │
+│  make publish_server → scp auf Webserver                               │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
