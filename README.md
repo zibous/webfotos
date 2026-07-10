@@ -232,10 +232,10 @@ make album NAME=testalbum
 
 ## Infos
 
-https://bitbucket.org/peter_siebler/theme-cards-flow/src/master/
-https://bitbucket.org/peter_siebler/theme-cards-flow/src/25e008c271cc5383b4cb66443a73948bf0c3d6d5/theme/helpers/README.md
-https://bitbucket.org/peter_siebler/theme-cards-flow/src/25e008c271cc5383b4cb66443a73948bf0c3d6d5/tools/README.md
-https://github.com/thumbsup/thumbsup
+* [Theme Cards Flow (Master)](https://bitbucket.org)
+* [Theme Helpers README](https://bitbucket.org)
+* [Theme Tools README](https://bitbucket.org)
+* [Official thumbsup Repository](https://github.com)
 
-update default Node version to 20 in Docker
-https://github.com/psa/thumbsup/
+Update default Node version to 20 in Docker:
+* [Modified thumbsup Fork (psa)](https://github.com)
