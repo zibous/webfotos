@@ -1,9 +1,10 @@
 # thumbsup Fotogalerie – Docker Setup
 
-[![Support author](https://img.shields.io/badge/buy%20me%20a%20coffee-orange.svg)](https://www.buymeacoff.ee/zibous)
+
 [![License](https://img.shields.io/badge/license-Open%20Source-green.svg)](https://opensource.org)
-![Node.js](https://img.shields.io/badge/Node.js-20-339933.svg)
-![thumbsup](https://img.shields.io/badge/thumbsup-2.18.0-blue.svg)
+![Node.js](https://img.shields.io/badge/Node.js-20-339933.svg
+![thumbsup](https://img.shields.io/npm/v/thumbsup?label=thumbsup&color=0077ff)
+[![Support author](https://img.shields.io/badge/buy%20me%20a%20coffee-orange.svg)](https://www.buymeacoff.ee/zibous)
 
 ![Screenshot der Anwendung](./docs/fotogalerie.png)
 
