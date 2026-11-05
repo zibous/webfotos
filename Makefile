@@ -98,6 +98,62 @@ publish_nas:
 publish_server:
 	bash ./publish/publish.sh
 
+# Vor-Check: Alles bereit für Album-Generierung?
+# make validate NAME=testalbum 
+validate:
+	@echo "🔍 Starte Validierung..."
+	@echo ""
+	@echo "=== 1. Verzeichnisstruktur ==="
+	@if [ ! -d "fotobooks/$(NAME)" ]; then \
+		echo "❌ Fehler: fotobooks/$(NAME)/ fehlt!"; \
+		exit 1; \
+	fi
+	@echo "✓ fotobooks/$(NAME)/ vorhanden"
+	@if [ ! -d "fotobooks/www" ]; then \
+		mkdir -p fotobooks/www; \
+		echo "⚠ fotobooks/www/ wurde erstellt"; \
+	fi
+	@echo "✓ fotobooks/www/ vorhanden"
+	@echo ""
+	@echo "=== 2. Konfigurationsdateien ==="
+	@if [ ! -f "fotobooks/$(NAME)/album.json" ]; then \
+		echo "❌ Fehler: fotobooks/$(NAME)/album.json fehlt!"; \
+		exit 1; \
+	fi
+	@echo "✓ album.json vorhanden"
+	@if ! jq empty fotobooks/$(NAME)/album.json 2>/dev/null; then \
+		echo "❌ Fehler: album.json ist kein gültiges JSON!"; \
+		exit 1; \
+	fi
+	@echo "✓ album.json ist valides JSON"
+	@echo ""
+	@echo "=== 3. Fotos vorhanden ==="
+	@PHOTO_COUNT=$$(find fotobooks/$(NAME) -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.heic" \) | wc -l); \
+	if [ "$$PHOTO_COUNT" -eq 0 ]; then \
+		echo "❌ Fehler: Keine Fotos in fotobooks/$(NAME)/ gefunden!"; \
+		exit 1; \
+	fi
+	@echo "✓ $$PHOTO_COUNT Fotos gefunden"
+	@echo ""
+	@echo "=== 4. Docker-Umgebung ==="
+	@if ! docker compose version >/dev/null 2>&1; then \
+		echo "❌ Fehler: docker compose nicht verfügbar!"; \
+		exit 1; \
+	fi
+	@echo "✓ docker compose verfügbar"
+	@if ! docker compose ps >/dev/null 2>&1; then \
+		echo "⚠ Warnung: Kein docker-compose.yml im Verzeichnis gefunden"; \
+	else \
+		echo "✓ docker-compose.yml vorhanden"; \
+	fi
+	@echo ""
+	@echo "=== 5. Output-Verzeichnis (optional sauber machen) ==="
+	@if [ -n "$(CLEAN_OUTPUT)" ]; then \
+		rm -rf fotobooks/www/$(NAME)/*; \
+		echo "✓ Output-Verzeichnis geleert"; \
+	fi
+	@echo ""
+	@echo "✅ Validierung bestanden! Ready für: make album NAME=$(NAME)"
 
 git-status: ## Zeigt die aktuelle Forgejo Server-Verbindung (Remote URL) an
 	@echo "🔍 Überprüfe Git-Remote-Konfiguration..."
@@ -140,7 +196,7 @@ git-release: git-status ## Neues Versions-Tag automatisch berechnen, erstellen u
 	git push origin $$NEXT_TAG; \
 	echo "🎉 Version $$NEXT_TAG erfolgreich an Forgejo übermittelt!"
 
-# Hilfe
+# Hilfe make album NAME=fotobuch" ist standard !!!
 help:
 	@echo ""
 	@echo "  thumbsup Fotogalerie - Befehle"
